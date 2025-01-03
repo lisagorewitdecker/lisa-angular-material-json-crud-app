@@ -1,4 +1,13 @@
-            - name: Setup Node.js environment
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"- name: Setup Node.js environment
   uses: actions/setup-node@v4.1.0
   with:
     # Set always-auth in npmrc.
