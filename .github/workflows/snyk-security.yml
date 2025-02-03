@@ -1,0 +1,23 @@
+name: Snyk Security
+
+on: [push, pull_request]
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Snyk
+      uses: snyk/actions/setup@v1
+      with:
+        snyk-version: latest
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    - name: Run Snyk Code Test
+      run: snyk code test --sarif > snyk-code.sarif
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
