@@ -30,7 +30,8 @@
     "zone.js": "~0.12.0",
     "ip": "<= 2.0.1",
     "serialize-javascript": ">=6.0.2",
-    "http-proxy-middleware": ">=3.0.4"
+    "http-proxy-middleware": ">=3.0.4",
+    "vite": ">=6.2.6"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.5",
@@ -52,7 +53,8 @@
     "zone.js": "~0.12.0",
     "ip": "<= 2.0.1",
     "serialize-javascript": ">=6.0.2",
-    "http-proxy-middleware": ">=3.0.4"
+    "http-proxy-middleware": ">=3.0.4",
+    "vite": ">=6.2.6"
   }
  }
 
