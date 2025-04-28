@@ -29,7 +29,9 @@
     "webpack-dev-middleware": ">=6.1.2",
     "zone.js": "~0.12.0",
     "ip": "<= 2.0.1",
-    "serialize-javascript": ">=6.0.2"
+    "serialize-javascript": ">=6.0.2",
+    "http-proxy-middleware": ">=3.0.4"
+
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.5",
@@ -50,7 +52,9 @@
     "webpack-dev-middleware": ">=6.1.2",
     "zone.js": "~0.12.0",
     "ip": "<= 2.0.1",
-    "serialize-javascript": ">=6.0.2"
+    "serialize-javascript": ">=6.0.2",
+    "http-proxy-middleware": ">=3.0.4"
+
   }
  }
 
