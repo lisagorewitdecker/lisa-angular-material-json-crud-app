@@ -30,7 +30,7 @@
     "webpack-dev-server": ">=5.2.5",
     "zone.js": "~0.15.0",
     "ip": "<= 2.0.1",
-    "serialize-javascript": ">=6.0.2",
+    "serialize-javascript": ">=7.0.5",
     "http-proxy-middleware": ">=3.0.5",
     "vite": ">=8.1.5"
   },
@@ -55,7 +55,7 @@
     "webpack-dev-server": ">=5.2.5",
     "zone.js": "~0.15.0",
     "ip": "<= 2.0.1",
-    "serialize-javascript": ">=6.0.2",
+    "serialize-javascript": ">=7.0.5",
     "http-proxy-middleware": ">=3.0.5",
     "vite": ">=8.1.5"
   },
