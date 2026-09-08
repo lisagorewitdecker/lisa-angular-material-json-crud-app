@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {CoreService} from "../core/core.service";
 import {EmployeeService} from "../services/employee.service";
@@ -27,15 +27,15 @@ export class EmpAddEditComponent implements OnInit {
     private _coreService: CoreService
   ) {
     this.empForm = this._fb.group({
-      firstName: '',
-      lastName: '',
-      email: '',
-      dob: '',
-      gender: '',
-      education: '',
-      company: '',
-      experience: '',
-      compensation: '',
+      firstName: ['', [Validators.maxLength(100)]],
+      lastName: ['', [Validators.maxLength(100)]],
+      email: ['', [Validators.email, Validators.maxLength(254)]],
+      dob: [''],
+      gender: [''],
+      education: [''],
+      company: ['', [Validators.maxLength(100)]],
+      experience: ['', [Validators.min(0), Validators.max(80)]],
+      compensation: ['', [Validators.min(0), Validators.max(1000000000)]],
     });
   }
 
@@ -45,29 +45,71 @@ export class EmpAddEditComponent implements OnInit {
 
   onFormSubmit() {
     if (this.empForm.valid) {
+      const payload = this.sanitizeEmployeePayload();
+
       if (this.data) {
         this._empService
-          .updateEmployee(this.data.id, this.empForm.value)
+          .updateEmployee(this.data.id, payload)
           .subscribe({
-            next: (val: any) => {
+            next: () => {
               this._coreService.openSnackBar('Employee Updated!');
               this._dialogRef.close(true);
             },
-            error: (err: any) => {
-              console.error(err);
+            error: () => {
+              this._coreService.openSnackBar('Unable to update employee.');
             },
           });
       } else {
-        this._empService.addEmployee(this.empForm.value).subscribe({
-          next: (val: any) => {
+        this._empService.addEmployee(payload).subscribe({
+          next: () => {
             this._coreService.openSnackBar('Employee Added!');
             this._dialogRef.close(true);
           },
-          error: (err: any) => {
-            console.error(err);
+          error: () => {
+            this._coreService.openSnackBar('Unable to add employee.');
           },
         });
       }
     }
+  }
+
+  private sanitizeEmployeePayload() {
+    const value = this.empForm.getRawValue();
+
+    return {
+      firstName: value.firstName?.trim() ?? '',
+      lastName: value.lastName?.trim() ?? '',
+      email: value.email?.trim() ?? '',
+      dob: this.normalizeDate(value.dob),
+      gender: value.gender ?? '',
+      education: value.education ?? '',
+      company: value.company?.trim() ?? '',
+      experience: this.normalizeNumber(value.experience),
+      compensation: this.normalizeNumber(value.compensation),
+    };
+  }
+
+  private normalizeDate(value: unknown): string {
+    if (!value) {
+      return '';
+    }
+
+    const date = new Date(value as string | number | Date);
+
+    if (Number.isNaN(date.getTime())) {
+      return '';
+    }
+
+    return date.toISOString().split('T')[0];
+  }
+
+  private normalizeNumber(value: unknown): number | null {
+    if (value === '' || value === null || value === undefined) {
+      return null;
+    }
+
+    const numericValue = Number(value);
+
+    return Number.isFinite(numericValue) ? numericValue : null;
   }
 }
