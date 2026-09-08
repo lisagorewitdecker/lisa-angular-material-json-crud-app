@@ -1,15 +1,27 @@
 import {TestBed} from "@angular/core/testing";
-import {RouterTestingModule} from "@angular/router/testing";
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {of} from 'rxjs';
 import {AppComponent} from "./app.component";
+import {AppModule} from './app.module';
+import {CoreService} from './core/core.service';
+import {EmployeeService} from './services/employee.service';
 
 describe('AppComponent', () => {
+  const employeeServiceSpy = {
+    getEmployeeList: vi.fn().mockReturnValue(of([])),
+    deleteEmployee: vi.fn().mockReturnValue(of({})),
+  };
+  const coreServiceSpy = {openSnackBar: vi.fn()};
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        AppModule,
+        NoopAnimationsModule,
       ],
-      declarations: [
-        AppComponent
+      providers: [
+        {provide: EmployeeService, useValue: employeeServiceSpy},
+        {provide: CoreService, useValue: coreServiceSpy},
       ],
     }).compileComponents();
   });
@@ -24,6 +36,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('crud-app app is running!');
+    expect(compiled.querySelector('mat-toolbar span')?.textContent).toContain('Crud Angular + Material');
   });
 });
