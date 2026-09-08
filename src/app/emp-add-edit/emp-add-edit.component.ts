@@ -6,6 +6,7 @@ import {EmployeeService} from "../services/employee.service";
 
 @Component({
   selector: 'app-emp-add-edit',
+  standalone: false,
   templateUrl: './emp-add-edit.component.html',
   styleUrls: ['./emp-add-edit.component.scss'],
 })

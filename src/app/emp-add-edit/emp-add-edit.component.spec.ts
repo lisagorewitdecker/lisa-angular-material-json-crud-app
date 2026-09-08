@@ -1,7 +1,15 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ReactiveFormsModule} from '@angular/forms';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 import {of} from 'rxjs';
 import {EmpAddEditComponent} from './emp-add-edit.component';
 import {EmployeeService} from '../services/employee.service';
@@ -20,14 +28,24 @@ describe('EmpAddEditComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EmpAddEditComponent],
-      imports: [ReactiveFormsModule],
+      imports: [
+        ReactiveFormsModule,
+        NoopAnimationsModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        MatSelectModule,
+      ],
       providers: [
         {provide: MAT_DIALOG_DATA, useValue: null},
         {provide: MatDialogRef, useValue: dialogRefSpy},
         {provide: EmployeeService, useValue: employeeServiceSpy},
         {provide: CoreService, useValue: coreServiceSpy},
       ],
-      schemas: [NO_ERRORS_SCHEMA],
     })
       .compileComponents();
 
@@ -44,7 +62,7 @@ describe('EmpAddEditComponent', () => {
     component.empForm.setValue({
       firstName: ' Lisa ',
       lastName: ' Gore ',
-      email: ' test@example.com ',
+      email: 'test@example.com',
       dob: new Date('2024-01-02T00:00:00Z'),
       gender: 'female',
       education: 'College Degree',
