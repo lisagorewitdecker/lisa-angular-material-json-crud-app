@@ -9,6 +9,7 @@ import {CoreService} from './core/core.service';
 
 @Component({
   selector: 'app-root',
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -60,7 +61,9 @@ export class AppComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
-      error: console.log,
+      error: () => {
+        this._coreService.openSnackBar('Unable to load employees.');
+      },
     });
   }
 
@@ -75,11 +78,13 @@ export class AppComponent implements OnInit {
 
   deleteEmployee(id: number) {
     this._empService.deleteEmployee(id).subscribe({
-      next: (res) => {
+      next: () => {
         this._coreService.openSnackBar('Employee deleted!', 'done');
         this.getEmployeeList();
       },
-      error: console.log,
+      error: () => {
+        this._coreService.openSnackBar('Unable to delete employee.');
+      },
     });
   }
 

@@ -3,14 +3,17 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1 and [JSON Server](https://www.npmjs.com/package/json-server).
 
 ## Development server
-Please install node_modules by using the CLI in your project by typing in `npm install` or, `npm i`.
-Also you will need to ensure that you have navigated into the main folder of your project with the CLI or terminal inside the project to ensure that you install JSON Server by entering `npm i json-server` into the CLI while inside your project. To ensure that Angular Material is installed, next type `ng add @angular/material` into the project via your CLI.
+Install dependencies with `npm install`.
 
-You will then need to open two terminals or CLI windows one to run the serverless JSON database file named db.json. In one terminal or session of CLI you must again be inside the main project folder. Type in the commad `npm install -g json-server` to ensure that the JSON Server is fully installed then type in the next command `json-server --watch db.json` this will spin up the serverless JSON database. You will be given a link of the resources to view you may open this link in a new window if prefered (http://localhost:3000/employees) you will then be able too see all entries for this project.
+Run the local API in one terminal:
 
-In the second CLI terminal window within your project's main folder run the command `ng serve` to see the project at (http://localhost:4200/). The application will automatically reload if you change any of the source files. You will also get a link to see the data that JSON is using in the background you have entered.
+`npm run server`
 
-Please note that both terminals or instantiations of JSON Serverless database and the Angular CLI must remain open while working on this project so that you can CREATE, READ, UPDATE or DELETE items within your project.
+Run the Angular app in a second terminal:
+
+`npm start`
+
+The application now calls the backend through `/api` and the Angular dev server proxies that traffic to `http://127.0.0.1:3000`, so the browser no longer needs direct hard-coded access to the JSON server origin.
 
 ## Code scaffolding
 
