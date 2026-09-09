@@ -109,7 +109,11 @@ export class EmpAddEditComponent implements OnInit {
   }
 
   private normalizeNumber(value: unknown): number | null {
-    if (value === '' || value === null || value === undefined) {
+    if (value === null || value === undefined) {
+      return null;
+    }
+
+    if (typeof value === 'string' && value.trim() === '') {
       return null;
     }
 
