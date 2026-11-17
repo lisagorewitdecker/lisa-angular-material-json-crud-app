@@ -48,7 +48,7 @@
     "@angular/compiler-cli": "22.2.6",
     "jsdom": "^31.0.0",
     "json-server": "^1.0.0-beta.15",
-    "typescript": "~6.0.3",
+    "typescript": "~7.0.2",
     "vitest": "^5.1.0"
   },
   "overrides": {}
