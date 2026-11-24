@@ -47,7 +47,7 @@
   "devDependencies": {
     "@angular/build": "22.2.7",
     "@angular/cli": "22.2.7",
-    "@angular/compiler-cli": "22.2.6",
+    "@angular/compiler-cli": "22.3.0",
     "jsdom": "^31.0.1",
     "json-server": "^1.0.0-beta.15",
     "typescript": "~7.0.2",
