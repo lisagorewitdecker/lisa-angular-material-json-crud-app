@@ -39,7 +39,7 @@
     "@angular/material": "22.3.0",
     "@angular/platform-browser": "22.2.6",
     "@angular/platform-browser-dynamic": "22.2.6",
-    "@angular/router": "22.2.6",
+    "@angular/router": "22.3.0",
     "rxjs": "~7.8.2",
     "tslib": "^2.9.1",
     "zone.js": "~0.16.0"
